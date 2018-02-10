@@ -27,18 +27,40 @@ public class Espresso {
 
 
 
-        @Before
-        public void setUp() throws Exception {
-        }
 
         @Test
-        public void greeterSaysHello() {
-                onView(withId(R.id.input)).perform(typeText("Steve"), closeSoftKeyboard());
+        public void case1() {
+                onView(withId(R.id.input)).perform(typeText("password"), closeSoftKeyboard());
                 onView(withId(R.id.mybutton)).perform(click());
                 onView(withId(R.id.output)).check(matches(withText("Not strong enough")));
         }
 
-        @After
-        public void tearDown() throws Exception {
+        @Test
+        public void case2() {
+                onView(withId(R.id.input)).perform(typeText("passw"), closeSoftKeyboard());
+                onView(withId(R.id.mybutton)).perform(click());
+                onView(withId(R.id.output)).check(matches(withText("Not strong enough")));
         }
+
+        @Test
+        public void case3() {
+                onView(withId(R.id.input)).perform(typeText("Stevesdfsd#"), closeSoftKeyboard());
+                onView(withId(R.id.mybutton)).perform(click());
+                onView(withId(R.id.output)).check(matches(withText("Not strong enough")));
+        }
+
+        @Test
+        public void case4() {
+                onView(withId(R.id.input)).perform(typeText("Stev7sdfe"), closeSoftKeyboard());
+                onView(withId(R.id.mybutton)).perform(click());
+                onView(withId(R.id.output)).check(matches(withText("Not strong enough")));
+        }
+
+        @Test
+        public void case5() {
+                onView(withId(R.id.input)).perform(typeText("Stev&8sdfdse"), closeSoftKeyboard());
+                onView(withId(R.id.mybutton)).perform(click());
+                onView(withId(R.id.output)).check(matches(withText("strong enough")));
+        }
+
 }
